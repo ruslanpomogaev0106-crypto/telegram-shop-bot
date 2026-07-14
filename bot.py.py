@@ -11,7 +11,7 @@ bot = telebot.TeleBot(TOKEN)
 ADMIN_ID = 5966765250
 
 
-# --- БАЗА ДАННЫХ (Создание и подключение) ---
+#  БАЗА ДАННЫХ (Создание и подключение) 
 def init_db():
     conn = sqlite3.connect('shop.db')
     cursor = conn.cursor()
