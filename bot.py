@@ -8,8 +8,7 @@ bot = telebot.TeleBot(TOKEN)
 
 # Если захочешь ограничить доступ к /admin, впиши сюда свой Telegram ID
 # Узнать его можно через бота @getmyid_bot
-ADMIN_ID = 5966765250
-
+ADMIN_ID = 123456
 
 #  БАЗА ДАННЫХ (Создание и подключение) 
 def init_db():
