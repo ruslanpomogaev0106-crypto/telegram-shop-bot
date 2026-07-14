@@ -3,7 +3,7 @@ import sqlite3
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # 1. Твои настройки
-TOKEN = '8927249194:AAFlgkOn4Lxp_BBtO4rc2dae9YPQ72V2k7Q'
+TOKEN = 'ТОКЕН'
 bot = telebot.TeleBot(TOKEN)
 
 # Если захочешь ограничить доступ к /admin, впиши сюда свой Telegram ID
