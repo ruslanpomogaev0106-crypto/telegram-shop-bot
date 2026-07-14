@@ -32,7 +32,7 @@ def init_db():
 init_db()
 
 
-# --- КАТЕГОРИИ И СВЯЗЬ С МЕНЕДЖЕРОМ ---
+#  КАТЕГОРИИ И СВЯЗЬ С МЕНЕДЖЕРОМ 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     markup = InlineKeyboardMarkup(row_width=1)
@@ -48,7 +48,7 @@ def send_welcome(message):
     bot.send_message(message.chat.id, "Добро пожаловать в магазин! Выберите категорию:", reply_markup=markup)
 
 
-# --- ФОТО ТОВАРОВ ПО КАТЕГОРИЯМ ---
+# ФОТО ТОВАРОВ ПО КАТЕГОРИЯМ 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("category_"))
 def show_category(call):
     bot.answer_callback_query(call.id)  # Убираем часики загрузки
@@ -57,7 +57,7 @@ def show_category(call):
         markup = InlineKeyboardMarkup()
         markup.add(InlineKeyboardButton("Купить за 5000 руб.", callback_data="buy_Смартфон"))
 
-        # Отправляем фото по прямой ссылке (можно использовать локальный файл)
+        # Отправляем фото по прямой ссылке
         photo_url = "https://via.placeholder.com/400x300.png?text=SmartPhone"
         bot.send_photo(call.message.chat.id, photo_url, caption="Смартфон X-Pro\nОтличный телефон!",
                        reply_markup=markup)
@@ -71,7 +71,7 @@ def show_category(call):
                        reply_markup=markup)
 
 
-# --- СОХРАНЕНИЕ ЗАКАЗА В SQLITE ---
+# СОХРАНЕНИЕ ЗАКАЗА В SQLITE 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("buy_"))
 def process_buy(call):
     # Достаем название товара из callback_data (например, из "buy_Смартфон" получаем "Смартфон")
@@ -90,13 +90,10 @@ def process_buy(call):
     bot.send_message(call.message.chat.id, f"✅ Вы успешно заказали: {item_name}. Наш менеджер скоро напишет вам.")
 
 
-# --- ПАНЕЛЬ АДМИНИСТРАТОРА (/admin) ---
+# ПАНЕЛЬ АДМИНИСТРАТОРА (/admin)
 @bot.message_handler(commands=['admin'])
 def admin_panel(message):
-    # Простая проверка на админа (раскомментируй в рабочем проекте)
-    # if message.chat.id != ADMIN_ID:
-    #     bot.send_message(message.chat.id, "У вас нет прав администратора ❌")
-    #     return
+    # Простая проверка на админа
 
     # Читаем заказы из базы
     conn = sqlite3.connect('shop.db')
